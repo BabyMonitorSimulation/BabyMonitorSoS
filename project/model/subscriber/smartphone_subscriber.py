@@ -97,7 +97,6 @@ class SmartphoneSubscriber(ConfigScenario, Thread):
             if start_time == 0:
                 start_time = int(time.time())
             time_waiting = int(time.time()) - start_time
-            print(f"{start_time} -- {time_waiting}")
             info = type_notification(body)
             socketio.emit("SmartphoneInformation", {"info": info})
             if time_waiting > 10 and not forwarded:
