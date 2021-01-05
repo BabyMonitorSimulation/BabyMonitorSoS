@@ -14,7 +14,7 @@ bm_on = False
 def babymonitor_connect():
     global bm_on
     bm_on = True
-    data = data_from_baby("force_fine")
+    data = data_from_baby("fine")
     data['type'] = 'status'
     BabyMonitorService(BabyMonitorSend).insert_data(data)
     info = {"info": "Baby Monitor Start"}

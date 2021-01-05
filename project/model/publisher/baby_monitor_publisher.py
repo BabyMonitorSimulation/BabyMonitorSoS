@@ -78,20 +78,20 @@ class BabyMonitorPublisher(ConfigScenario, Thread):
         data_receive = BabyMonitorService(BabyMonitorReceive).last_record()
 
         if not data_send:
-            return data_from_baby("new_status")
+            return data_from_baby("new")
 
         if data_send["type"] == "notification" and not data_receive:
-            return data_from_baby("repeat_status")
+            return data_from_baby("repeat")
 
         if (
             data_send["type"] == "notification"
             and data_receive["id_notification"] != data_send["id"]
         ):
-            return data_from_baby("repeat_status")
+            return data_from_baby("repeat")
         if (
             data_send["type"] == "notification"
             and data_receive["id_notification"] == data_send["id"]
         ):
-            return data_from_baby("force_fine")
+            return data_from_baby("fine")
 
-        return data_from_baby("new_status")
+        return data_from_baby("new")
