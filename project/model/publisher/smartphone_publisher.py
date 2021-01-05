@@ -26,7 +26,7 @@ class SmartphonePublisher(ConfigScenario, Thread):
             self.forward_message()
 
     def publish_confirmation(self):
-        confirmation = {"type": "confirmation", "msg": "Notificaiton confirmed!"}
+        confirmation = {"type": "confirmation", "msg": "Notification confirmed!"}
 
         self.channel.basic_publish(
             exchange=exchange,
@@ -42,6 +42,7 @@ class SmartphonePublisher(ConfigScenario, Thread):
         print("(Publish) SM|BM: ")
 
     def forward_message(self):
+        print ("I'm forwarding")
         last_record = BabyMonitorService(BabyMonitorSend).last_record()
         notification = self.format_notification(last_record)
 

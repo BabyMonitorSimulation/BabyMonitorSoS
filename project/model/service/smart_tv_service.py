@@ -13,5 +13,4 @@ class SmartTvService():
             SmartTv.id.desc()).first()
         if not data:
             return data
-
         return data.__dict__

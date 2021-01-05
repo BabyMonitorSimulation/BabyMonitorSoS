@@ -16,7 +16,7 @@ def change_status():
     command = request.json["lock"]
     block_tv(command)
     value = 'locked' if SmartTvService().last_record()['block'] else 'unlocked'
-
+    SmartTvPublisher().start()
     return (
         jsonify(
             {"info": f"Tv's status is {value}"}
