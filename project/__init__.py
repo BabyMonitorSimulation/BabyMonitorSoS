@@ -30,6 +30,5 @@ from .util import (
 )
 from .controller import main_controller
 from .model import baby_monitor, smartphone, smart_tv
-from .solution import observer_model
 
 db.create_all()

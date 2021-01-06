@@ -14,10 +14,7 @@ from project.controller.smart_tv_controller import (
     tv_disconnect,
     block_tv,
 )
-from project.solution.observer_controller import (
-    observer_connect,
-    observer_disconnect,
-)
+
 from project.util.connection_broker import Connection
 from project.util.construct_scenario import (
     queue_baby_monitor,
@@ -41,7 +38,6 @@ def restart():
     babymonitor_disconnect()
     smartphone_disconnect()
     tv_disconnect()
-    observer_disconnect()
     connection = Connection()
     connection.channel.queue_delete(queue=queue_baby_monitor)
     connection.channel.queue_delete(queue=queue_smartphone_bm)
@@ -59,5 +55,3 @@ def start_controllers():
     tv_connect
     tv_disconnect
     block_tv
-    observer_connect
-    observer_disconnect

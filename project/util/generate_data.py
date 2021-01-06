@@ -42,9 +42,9 @@ def data_from_baby(type: str):
         }
 
     elif type == "new":
-        data['breathing'] = random.choices([True, False], [1, 0], k=1)[0]
-        data['crying'] = False if not data['breathing'] else random.choices([True, False], [1.0, 0.0], k=1)[0]
-        data["sleeping"] = False if data['crying'] else random.choices([True, False], [0, 1.0], k=1)[0]
+        data['breathing'] = random.choices([True, False], [0.75, 0.25], k=1)[0]
+        data['crying'] = False if not data['breathing'] else random.choices([True, False], [0.6, 0.4], k=1)[0]
+        data["sleeping"] = False if data['crying'] else random.choices([True, False], [0.8, 0.2], k=1)[0]
         data['time_no_breathing'] = 0
 
     elif type == "repeat":

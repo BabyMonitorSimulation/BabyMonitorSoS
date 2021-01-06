@@ -42,7 +42,6 @@ class SmartphonePublisher(ConfigScenario, Thread):
         print("(Publish) SM|BM: ")
 
     def forward_message(self):
-        print ("I'm forwarding")
         last_record = BabyMonitorService(BabyMonitorSend).last_record()
         notification = self.format_notification(last_record)
 
