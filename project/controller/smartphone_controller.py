@@ -12,18 +12,15 @@ sp_on = False
 def smartphone_connect():
     global sp_on
     sp_on = True
-    # check_user_confirm = checkUserConfirm()
     subscriber_bm = SmartphoneSubscriber("babymonitor")
     subscriber_tv = SmartphoneSubscriber("smart_tv")
     subscriber_bm.start()
     subscriber_tv.start()
-    # check_user_confirm.start()
     while True:
         sleep(1)
         if not sp_on:
             subscriber_bm.stop()
             subscriber_tv.stop()
-            # check_user_confirm.stop()
             break
 
 
