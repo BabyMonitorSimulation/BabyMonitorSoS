@@ -8,9 +8,7 @@ from project.util.construct_scenario import (
     st_info,
 )
 from project.model.business.smartphone_business import (
-    wait_user_confirm,
     check_is_notification,
-    send_confirm_baby_monitor,
     forward_message_smart_tv,
     type_notification,
     check_user_confirm,
@@ -52,12 +50,10 @@ class SmartphoneSubscriber(ConfigScenario, Thread):
     def stop(self):
         if self.type_consume == "babymonitor":
             print("(Subscribe) SP|BM: Close")
-            # self.channel.queue_delete(queue=queue_smartphone_bm)
             self._stop.set()
             self._stop.isSet()
         else:
             print("(Subscribe) SP|TV: Close")
-            # self.channel.queue_delete(queue=queue_smartphone_st)
             self._stop.set()
             self._stop.isSet()
 
