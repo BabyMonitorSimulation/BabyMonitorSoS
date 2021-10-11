@@ -33,16 +33,6 @@ class BabyMonitorPublisher(ConfigScenario, Thread):
 
     def publish_info_baby(self, status):
         global once
-        '''if status["type"] == "notification" and once:
-            random.seed(datetime.now())
-            choice = random.choices([True, False], [0.0, 1.0], k=1)[0]
-            if choice:
-                user_confirm()
-            once = False
-
-        if status["type"] == "status":
-            once = True'''
-
         self.channel.basic_publish(
             exchange=exchange,
             routing_key=bm_info,
