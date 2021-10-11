@@ -24,7 +24,6 @@ from project.util.construct_scenario import (
 )
 from time import sleep
 from project import socketio
-# from project.util.wait_user_confirm import checkUserConfirm
 
 
 @app.route("/", methods=["GET"])
