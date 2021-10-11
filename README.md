@@ -1,23 +1,24 @@
 # BabyMonitorSoS
 ![sistema](https://github.com/babymonitor-iot/babymonitor-iot/blob/master/babymonitor.png)
 
-## Sobre
-Esse simulador possui o objetivo de simular os dispositivos Baby monitor, smartphone e smart TV, considerando as funcionalidades relevantes para a execução do exemplo proposto no trabalho: Lidando com Componentes Resistentes a Mudanças no Contexto de Internet das Coisas, submetido ao CTIC-ES, no Congresso Brasileiro de Software: Teoria e Prática (CBSoft) 2020. Neste README os seguintes tópicos serão explorados: Visão geral do sistema, detalhes sobre a arquitetura, comunicação dos sistemas e um tutorial para a execução da ferramenta.
+## About
 
-## Visão geral do sistema
-Para testar a solução proposta no trabalho, este simulador web, desenvolvido em Flask para parte do servidor, foi implementadao. No simulador a comunicação é feita por meio do RabbitMQ, um Message Broker open source que suporta o protocolo AMQP para o envio de mensagens e aubda dispobiliza recursos que englobam uma baixa perda de mensagens.
+This simulator was built with the goal of simulating the baby monitor, smartphone and smart TV devices, considering the relevant functionalities for executing the proposed example in the work: Dealing with IoT Defiant Components. 
 
-## Arquitetura
+## Overview
+To test the proposed solution, this web simulator was developed using Flask. The communication is made using RabbitMQ, an open source Message Broker, that uses the AMQP protocol to send messages and provides resources that includes a low message loss.
+
+## Architecture
 ![arquitetura](https://github.com/babymonitor-iot/babymonitor-iot/blob/master/arquitetura.png)
 
-A arquitetura do simulador está estruturada em camadas, de acordo com a figura acima. A camada mais externa é a de View, que contem a visualização em tempo real das mensagens trocadas e botões para interação com o sistema. A camada Controller possui os métodos correspondentes às ações possíveis de cada dispositivo, como conectar e desconectar e, para o smartphone e a smart TV, existem também de confirmar e bloquear/desbloquear, respectivamente. Assim, essa camada é utilizada como interface para interação com o dispositivo. A camada Model possui o modelo de dados e regras de negócios de cada dispositivo. Por fim, na camada Util estão funções extras que são utilizadas pelo sistema, como a geração de dados, por exemplo. O Observer está implementado em uma camada extra, a Solution.
+The simulator architecture is structured in layers, according to the image above. The most external layer is "View", it provides the real time visualization of the messages exchanged and buttons to interact with the system. The "Controller" layer has the methods corresponding to the possible user actions for each device, like connect and disconnect and, for the smartphone and the smart TV, it has the confirm and block/unblock, resepctively. Thus, this layer is used as an interface. The "Model" layer has the data model and business rules for each device. Finally, in "Util" layer are the extra functions that are used by the system, as for the data generation.
 
-Dentro da camada Model, existem as sub-camadas Publisher e Subscriber, que se conectam ao broker e realizam as ações de envio e recebimento de mensagens, respectivamente. Na camada de Service, estão implementados os métodos para interação com o banco de dados e na camada de Business estão as regras de negócio. 
+In Model layer, there's the sub-layers Publisher and Subscriber, that connect to the broker and send and receive messages, respectively. In "Service" layer are the methods to interact with the Database and in "Business" layer are the business rules.
 
-## Comunicação dos Sistemas
+## Comunication
 ![comunicacao-entre-sistemas](https://github.com/babymonitor-iot/babymonitor-iot/blob/master/comunication.png)
 
-As configurações utilizadas no broker são demonstradas na figura. No momento em que um publisher envia uma mensagem para o broker, a mesma é enviada para uma exchange que, através de rotas previamente estabelecidas, encaminha a mensagem para as filas que estão conectadas a essas rotas. As mensagens que chegam nas filas são entregues aos subscribers ligados a elas. Dessa forma, para o exemplo de casa inteligente, utilizamos somente uma exchange. Cada aplicação estabelece uma conexão com sua respectiva fila, especificando as rotas que desejam receber mensagens, assim, as rotas bm_info e tv_info são utilizadas pelo Baby Monitor e smart TV, respectivamente, para o envio de mensagens e ambas estão conectadas a fila do smartphone, para o recebimento dos dados. Por fim, as rotas bm_msg e tv_msg permitem que o smartphone publique mensagens de confirmação para o Baby Monitor e realize encaminhamento de notificações para a smart TV, respectivamente.
+The configurations used in the broker is shown in the figure above. When a publisher sends a message to the broker, it is sent to an exchange that, through routes previous stablished, forward the message to the queues connected to those routes. The messages that arrive in the queues are delivered to the subscribers linked to them. Thus, for the smart home example, we used only one exchange. Each application stablishes a conection with the respective queue, specifying the routes that will receive the message. 
 
 ## Tutorial
 ### Requirements:
