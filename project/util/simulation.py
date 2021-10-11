@@ -1,6 +1,5 @@
 import sys
 import random
-from datetime import datetime
 
 
 def block_tv_automatic():

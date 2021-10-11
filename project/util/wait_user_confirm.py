@@ -1,7 +1,6 @@
 from multiprocessing import Process
-import threading
 from project.model.service.baby_monitor_service import BabyMonitorService
-from project.model.baby_monitor import BabyMonitorSend, BabyMonitorReceive
+from project.model.baby_monitor import BabyMonitorSend
 from time import sleep
 from project import socketio
 from project.model.publisher.smartphone_publisher import SmartphonePublisher
