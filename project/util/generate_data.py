@@ -9,22 +9,22 @@ max_repeat = random.randint(5, 10)
 def define_type(function):
     def wrapped(type):
         global max_repeat
-        
+
         if type == "fine":
             wrapped.calls = 0
             max_repeat = random.randint(5, 10)
             return function("fine")
 
-        if type == 'new':
+        if type == "new":
             wrapped.calls += 1
             if wrapped.calls > max_repeat or wrapped.calls == 1:
-                return function('new')
-            else: 
-                return function('repeat')
+                return function("new")
+            else:
+                return function("repeat")
 
-        if type == 'repeat':
+        if type == "repeat":
             wrapped.calls += 1
-            return function('repeat')
+            return function("repeat")
 
     wrapped.calls = 0
     return wrapped
@@ -35,17 +35,25 @@ def data_from_baby(type: str):
     data = {}
     if type == "fine":
         data = {
-            'breathing': True,
-            'sleeping': True,
-            'crying': False,
-            'time_no_breathing': 0
+            "breathing": True,
+            "sleeping": True,
+            "crying": False,
+            "time_no_breathing": 0,
         }
 
     elif type == "new":
-        data['breathing'] = random.choices([True, False], [0.75, 0.25], k=1)[0]
-        data['crying'] = False if not data['breathing'] else random.choices([True, False], [0.6, 0.4], k=1)[0]
-        data["sleeping"] = False if data['crying'] else random.choices([True, False], [0.8, 0.2], k=1)[0]
-        data['time_no_breathing'] = 0
+        data["breathing"] = random.choices([True, False], [0.75, 0.25], k=1)[0]
+        data["crying"] = (
+            False
+            if not data["breathing"]
+            else random.choices([True, False], [0.6, 0.4], k=1)[0]
+        )
+        data["sleeping"] = (
+            False
+            if data["crying"]
+            else random.choices([True, False], [0.8, 0.2], k=1)[0]
+        )
+        data["time_no_breathing"] = 0
 
     elif type == "repeat":
         value = 0
